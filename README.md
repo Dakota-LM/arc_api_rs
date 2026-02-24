@@ -1,6 +1,6 @@
 # Arc_API_rs
 
-This is a client web API that connects to the Metaforge endpoints for Arc Raiders. The data returned from this tool is sourced from [MetaForge](https://metaforge.app/arc-raiders). 
+This is a client web API that connects to the Metaforge endpoints for Arc Raiders. The data returned from this tool is sourced from [MetaForge](https://metaforge.app/arc-raiders). Also, this is my first project, any feedback is much appreciated.
 
 > Notes: As per MetaForge documentation, this crate has built-in rate-limiting. Caching is expected to be handled in projects utilizing this crate.
 
