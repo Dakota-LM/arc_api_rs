@@ -14,8 +14,7 @@ pub use error::MetaForgeError;
 // Convenience re-export so examples can do:
 // use arc_api_rs::ItemsQuery;
 pub use endpoints::items::ItemsQuery;
-pub use endpoints::arcs::ArcsQuery;
-// pub use endpoints::quests::QuestsQuery;
-// pub use endpoints::traders::TradersQuery;
+pub use endpoints::bots::BotsQuery;
+pub use endpoints::quests::QuestQuery;
 pub use endpoints::game_map_data::MapDataQuery;
 pub use models::Item;

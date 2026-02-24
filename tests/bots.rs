@@ -1,18 +1,18 @@
-use arc_api_rs::{ArcsQuery, MetaForgeClient};
+use arc_api_rs::{BotsQuery, MetaForgeClient};
 use serde_json::json;
 use wiremock::{
     matchers::{method, path, query_param},
     Mock, MockServer, ResponseTemplate,
 };
 
-fn arc_json(id: &str, name: &str, has_image: bool) -> serde_json::Value {
+fn bot_json(id: &str, name: &str, has_image: bool) -> serde_json::Value {
     let icon_url = format!("https://cdn.example/icons/{}.webp", id);
     let image_value = if has_image {
         json!(format!("https://cdn.example/images/{}.webp", id))
     } else {
         json!("")
     };
-    
+
     json!({
         "id": id,
         "name": name,
@@ -25,7 +25,7 @@ fn arc_json(id: &str, name: &str, has_image: bool) -> serde_json::Value {
 }
 
 #[tokio::test]
-async fn arcs_paged_sends_query_and_deserializes() {
+async fn bots_paged_sends_query_and_deserializes() {
     let server = MockServer::start().await;
 
     // Mock expects GET /arc-raiders/arcs?page=1&limit=2
@@ -35,8 +35,8 @@ async fn arcs_paged_sends_query_and_deserializes() {
         .and(query_param("limit", "2"))
         .respond_with(ResponseTemplate::new(200).set_body_json(json!({
             "data": [
-                arc_json("bastion", "Bastion", true),
-                arc_json("bombardier", "Bombardier", false)
+                bot_json("bastion", "Bastion", true),
+                bot_json("bombardier", "Bombardier", false)
             ],
             "pagination": {
                 "page": 1,
@@ -53,13 +53,13 @@ async fn arcs_paged_sends_query_and_deserializes() {
     let http = reqwest::Client::new();
     let client = MetaForgeClient::with_client_and_base(http, server.uri());
 
-    let q = ArcsQuery {
+    let q = BotsQuery {
         page: Some(1),
         limit: Some(2),
         ..Default::default()
     };
 
-    let resp = client.arcs_paged(&q).await.expect("arcs_paged failed");
+    let resp = client.bots_paged(&q).await.expect("bots_paged failed");
 
     assert_eq!(resp.pagination.page, 1);
     assert_eq!(resp.pagination.limit, 2);
@@ -70,7 +70,7 @@ async fn arcs_paged_sends_query_and_deserializes() {
     assert_eq!(resp.data[0].id, "bastion");
     assert!(resp.data[0].icon.is_some());
     assert!(resp.data[0].image.is_some());
-    
+
     assert_eq!(resp.data[1].id, "bombardier");
     assert!(resp.data[1].icon.is_some());
     // bombardier has empty string for image, should be None
@@ -78,17 +78,17 @@ async fn arcs_paged_sends_query_and_deserializes() {
 }
 
 #[tokio::test]
-async fn arc_by_id_returns_some() {
+async fn bot_by_id_returns_some() {
     let server = MockServer::start().await;
 
-    // Your helper calls /arc-raiders/arcs?id=...&page=1&limit=1
+    // bot_by_id calls /arc-raiders/arcs?id=...&page=1&limit=1
     Mock::given(method("GET"))
         .and(path("/arc-raiders/arcs"))
         .and(query_param("id", "bastion"))
         .and(query_param("page", "1"))
         .and(query_param("limit", "1"))
         .respond_with(ResponseTemplate::new(200).set_body_json(json!({
-            "data": [ arc_json("bastion", "Bastion", true) ],
+            "data": [ bot_json("bastion", "Bastion", true) ],
             "pagination": {
                 "page": 1,
                 "limit": 1,
@@ -104,13 +104,13 @@ async fn arc_by_id_returns_some() {
     let http = reqwest::Client::new();
     let client = MetaForgeClient::with_client_and_base(http, server.uri());
 
-    let arc = client.arc_by_id("bastion").await.unwrap();
-    assert!(arc.is_some());
-    assert_eq!(arc.unwrap().name, "Bastion");
+    let bot = client.bot_by_id("bastion").await.unwrap();
+    assert!(bot.is_some());
+    assert_eq!(bot.unwrap().name, "Bastion");
 }
 
 #[tokio::test]
-async fn arc_by_id_returns_none_when_empty() {
+async fn bot_by_id_returns_none_when_empty() {
     let server = MockServer::start().await;
 
     Mock::given(method("GET"))
@@ -135,6 +135,6 @@ async fn arc_by_id_returns_none_when_empty() {
     let http = reqwest::Client::new();
     let client = MetaForgeClient::with_client_and_base(http, server.uri());
 
-    let arc = client.arc_by_id("does-not-exist").await.unwrap();
-    assert!(arc.is_none());
+    let bot = client.bot_by_id("does-not-exist").await.unwrap();
+    assert!(bot.is_none());
 }

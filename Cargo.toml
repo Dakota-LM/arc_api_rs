@@ -3,6 +3,13 @@ name = "arc_api_rs"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
+description = "Async Rust client for the MetaForge Arc Raiders API"
+repository = "https://github.com/Dakota-LM/arc_api_rs"
+homepage = "https://github.com/Dakota-LM/arc_api_rs"
+documentation = "https://docs.rs/arc_api_rs"
+keywords = ["arc-raiders", "metaforge", "gaming", "api-client", "async"]
+categories = ["api-bindings", "games"]
+readme = "README.md"
 
 [dependencies]
 reqwest = { version=">=0.13.1",features=["json","gzip","query","brotli","deflate"] }

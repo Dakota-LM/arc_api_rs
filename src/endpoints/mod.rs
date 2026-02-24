@@ -1,10 +1,10 @@
 pub mod items;
-pub mod arcs;
+pub mod bots;
 pub mod events_schedule;
 pub mod game_map_data;
 
 pub use game_map_data::{TABLE_ID, MapDataQuery};
 
-// later:
-// pub mod quests;
-// pub mod traders;
+pub mod quests;
+
+pub mod traders;

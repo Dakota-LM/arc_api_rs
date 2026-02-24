@@ -9,26 +9,30 @@ This is a client web API that connects to the Metaforge endpoints for Arc Raider
 Available Example Targets:
 - events_schedule
 - game_map_data
-- list_arcs
+- list_bots
 - list_items
+- list_quests
+- list_traders
 
 Ex.
 
-`cargo run --example list_arcs`
+`cargo run --example list_bots`
 
 ## Tests
 
 Available Test Targets:
-- arcs
+- bots
 - events
 - items
 - maps
 - pagination
+- quests
 - rate_limit
+- traders
 
 Ex.
 
-`cargo test --test arcs`
+`cargo test --test bots`
 
 ## License
 

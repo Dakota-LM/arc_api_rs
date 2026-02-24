@@ -50,7 +50,8 @@ pub enum Category {
     Nature,
     Locations,
     Events,
-    Arc,
+    #[serde(rename = "arc")]
+    Bots,
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]

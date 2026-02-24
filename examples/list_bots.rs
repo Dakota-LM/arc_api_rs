@@ -1,16 +1,16 @@
-use arc_api_rs::{MetaForgeClient, ArcsQuery};
+use arc_api_rs::{MetaForgeClient, BotsQuery};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = MetaForgeClient::new();
 
-    let q = ArcsQuery {
+    let q = BotsQuery {
         page: Some(1),
         limit: Some(2),
         ..Default::default()
     };
 
-    let resp = client.arcs_paged(&q).await?;
+    let resp = client.bots_paged(&q).await?;
 
     println!(
         "page {} / {} (total {}, has_next={}) max_value={:?}",
@@ -21,10 +21,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         resp.max_value
     );
 
-    for item in resp.data {
+    for bot in resp.data {
         println!(
             "{} | {} | Description={:?}",
-            item.id, item.name, item.description
+            bot.id, bot.name, bot.description
         );
     }
 
