@@ -50,6 +50,7 @@ dependencies = [
  "time",
  "time-macros",
  "tokio",
+ "url",
  "uuid",
  "wiremock",
 ]
@@ -1599,6 +1600,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9da98b7d9b7dad93488a84b8248efc35352b0b2657397d4167e7ad67e5d535e5"
 dependencies = [
  "deranged",
+ "itoa",
  "num-conv",
  "powerfmt",
  "serde_core",
@@ -1793,6 +1795,7 @@ dependencies = [
  "idna",
  "percent-encoding",
  "serde",
+ "serde_derive",
 ]
 
 [[package]]

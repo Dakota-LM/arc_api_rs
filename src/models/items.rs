@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::collections::HashMap;
+use super::common::{DateTimeString, UriString};
 
 
 /// An item returned by the MetaForge ARC Raiders API.
@@ -17,7 +18,7 @@ pub struct Item {
     pub item_type: String,
     pub loadout_slots: Vec<String>,
 
-    pub icon: String,
+    pub icon: UriString,
     pub rarity: String,
     pub value: i32,
 
@@ -28,8 +29,8 @@ pub struct Item {
     pub flavor_text: Option<String>,
     pub subcategory: Option<String>,
 
-    pub created_at: String,
-    pub updated_at: String,
+    pub created_at: DateTimeString,
+    pub updated_at: DateTimeString,
 
     pub shield_type: Option<String>,
     pub loot_area: Option<String>,

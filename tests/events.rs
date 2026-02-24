@@ -12,7 +12,7 @@ async fn events_schedule_deserializes() {
     let server = MockServer::start().await;
 
     Mock::given(method("GET"))
-        .and(path("/events-schedule"))
+        .and(path("/arc-raiders/events-schedule"))
         .respond_with(ResponseTemplate::new(200).set_body_json(json!({
             "data": [
                 {

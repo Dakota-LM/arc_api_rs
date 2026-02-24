@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use super::common::{deserialize_string_or_vec, UuidString};
+use super::common::{deserialize_string_or_vec, DateTimeString, UuidString};
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct MapDataResponse {
@@ -25,7 +25,7 @@ pub struct MapData {
     pub behind_locked_door: bool,
     #[serde(deserialize_with = "deserialize_string_or_vec")]
     pub last_edited_by: Option<Vec<String>>,
-    pub updated_at: Option<String>,
+    pub updated_at: Option<DateTimeString>,
     #[serde(rename = "eventConditionMask")]
     pub event_condition_mask: i32,
     #[serde(rename = "lootAreas", deserialize_with = "deserialize_string_or_vec")]

@@ -93,9 +93,9 @@ fn item_json(id: &str, name: &str) -> serde_json::Value {
 async fn items_paged_sends_query_and_deserializes() {
     let server = MockServer::start().await;
 
-    // Mock expects GET /items?page=1&limit=2
+    // Mock expects GET /arc-raiders/items?page=1&limit=2
     Mock::given(method("GET"))
-        .and(path("/items"))
+        .and(path("/arc-raiders/items"))
         .and(query_param("page", "1"))
         .and(query_param("limit", "2"))
         .respond_with(ResponseTemplate::new(200).set_body_json(json!({
@@ -140,9 +140,9 @@ async fn items_paged_sends_query_and_deserializes() {
 async fn item_by_id_returns_some() {
     let server = MockServer::start().await;
 
-    // Your helper calls /items?id=...&page=1&limit=1 (based on what we wrote)
+    // Your helper calls /arc-raiders/items?id=...&page=1&limit=1 (based on what we wrote)
     Mock::given(method("GET"))
-        .and(path("/items"))
+        .and(path("/arc-raiders/items"))
         .and(query_param("id", "acoustic-guitar"))
         .and(query_param("page", "1"))
         .and(query_param("limit", "1"))
@@ -174,7 +174,7 @@ async fn item_by_id_returns_none_when_empty() {
     let server = MockServer::start().await;
 
     Mock::given(method("GET"))
-        .and(path("/items"))
+        .and(path("/arc-raiders/items"))
         .and(query_param("id", "does-not-exist"))
         .and(query_param("page", "1"))
         .and(query_param("limit", "1"))
