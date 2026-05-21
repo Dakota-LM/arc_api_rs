@@ -135,8 +135,14 @@ pub enum SubCategory {
     Bombardier,
     Candleberries,
     Comet,
+    Firefly,
+    Vaporizer,
     #[serde(rename = "arc_probe")]
     ArcProbe,
+    #[serde(rename = "arc_assessor")]
+    ArcAssessor,
+    #[serde(rename = "arc_turbine")]
+    ArcTurbine,
     PricklyPear,
     Basket,
     Apricot,
