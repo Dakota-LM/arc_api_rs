@@ -108,6 +108,11 @@ pub enum SubCategory {
     #[serde(rename = "raider_cache")]
     RaiderCache,
     Bastion,
+    // The trailing-space alias works around an upstream MetaForge data error
+    // observed on Buried City rows, where `subcategory` is stored as
+    // `"hornet "` (length 7, UTF-8 byte 0x20 at the end) instead of `"hornet"`.
+    // Delete the alias once MetaForge cleans up the affected rows.
+    #[serde(alias = "hornet ")]
     Hornet,
     #[serde(rename = "weapon_case")]
     WeaponCase,
