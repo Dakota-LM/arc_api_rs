@@ -44,7 +44,13 @@ pub struct Item {
     pub locations: Vec<Value>,
     pub guide_links: Vec<Value>,
 
-    pub game_asset_id: i64,
+    /// Long-form article body. Nullable; concrete shape not yet observed.
+    #[serde(default)]
+    pub article: Option<Value>,
+
+    /// External guide URL for the item. Nullable.
+    #[serde(default)]
+    pub guide_url: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
