@@ -29,6 +29,7 @@ async fn traders_deserializes() {
             "data": {
                 "Apollo":  [ trader_item_json("barricade-kit", "Barricade Kit") ],
                 "Celeste": [ trader_item_json("med-kit", "Med Kit") ],
+                "Ermal":   [ trader_item_json("adrenaline-shot", "Adrenaline Shot") ],
                 "Lance":   [],
                 "Shani":   [],
                 "TianWen": [ trader_item_json("stable-stock-i", "Stable Stock I") ]
@@ -51,6 +52,10 @@ async fn traders_deserializes() {
 
     let tian_wen = resp.data.tian_wen.as_ref().unwrap();
     assert_eq!(tian_wen[0].id, "stable-stock-i");
+
+    let ermal = resp.data.ermal.as_ref().unwrap();
+    assert_eq!(ermal.len(), 1);
+    assert_eq!(ermal[0].id, "adrenaline-shot");
 
     assert_eq!(resp.data.lance.as_ref().unwrap().len(), 0);
 }

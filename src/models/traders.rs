@@ -29,6 +29,7 @@ pub struct TradersResponse {
 pub struct TraderInventories {
     pub apollo: Option<Vec<TraderItem>>,
     pub celeste: Option<Vec<TraderItem>>,
+    pub ermal: Option<Vec<TraderItem>>,
     pub lance: Option<Vec<TraderItem>>,
     pub shani: Option<Vec<TraderItem>>,
     pub tian_wen: Option<Vec<TraderItem>>,

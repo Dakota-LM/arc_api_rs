@@ -9,6 +9,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let traders = [
         ("Apollo",   resp.data.apollo.as_deref()),
         ("Celeste",  resp.data.celeste.as_deref()),
+        ("Ermal",    resp.data.ermal.as_deref()),
         ("Lance",    resp.data.lance.as_deref()),
         ("Shani",    resp.data.shani.as_deref()),
         ("Tian Wen", resp.data.tian_wen.as_deref()),
