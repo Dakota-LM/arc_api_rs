@@ -128,6 +128,7 @@ pub enum SubCategory {
     FlickeringThreat,
     Bombardier,
     Candleberries,
+    Comet,
     #[serde(rename = "arc_probe")]
     ArcProbe,
     PricklyPear,
@@ -221,4 +222,11 @@ pub enum SubCategory {
     InMyImage,
     WithAView,
     MovieNight,
+
+    /// Catch-all for variants we have not modeled yet (e.g. newly added
+    /// game elements) or for malformed values returned by the upstream
+    /// API (e.g. trailing whitespace). Lets deserialization succeed
+    /// instead of failing the entire response.
+    #[serde(other)]
+    Unknown,
 }
