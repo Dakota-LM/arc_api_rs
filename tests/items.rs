@@ -81,7 +81,8 @@ fn item_json(id: &str, name: &str) -> serde_json::Value {
   "locations": [],
   "guide_links": [],
   "article": null,
-  "guide_url": null
+  "guide_url": null,
+  "game_asset_id": 12345
 }
 "#;
 

@@ -51,6 +51,12 @@ pub struct Item {
     /// External guide URL for the item. Nullable.
     #[serde(default)]
     pub guide_url: Option<String>,
+
+    /// Internal MetaForge game asset identifier. Currently absent from the
+    /// items endpoint response but kept as an optional field so the model
+    /// stays compatible if the upstream API restores it.
+    #[serde(default)]
+    pub game_asset_id: Option<i64>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
