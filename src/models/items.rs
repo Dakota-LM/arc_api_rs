@@ -44,11 +44,19 @@ pub struct Item {
     pub locations: Vec<Value>,
     pub guide_links: Vec<Value>,
 
-    /// Long-form article body. Nullable; concrete shape not yet observed.
+    /// Long-form article body for the item. Appears to be a reserved
+    /// MetaForge schema slot for future guide content; observed `null` on
+    /// 100% of items sampled (page 1 of 6, 100/581). The concrete shape
+    /// has not been observed yet, so this is typed as `Option<Value>` to
+    /// stay forward-compatible. Will be tightened to a proper struct (or
+    /// `Option<String>` if markdown) once a populated value appears.
     #[serde(default)]
     pub article: Option<Value>,
 
-    /// External guide URL for the item. Nullable.
+    /// External guide URL for the item. Appears to be a reserved
+    /// MetaForge schema slot for future guide links; observed `null` on
+    /// 100% of items sampled. Typed as `Option<String>` on the
+    /// expectation that it will be a URL string when populated.
     #[serde(default)]
     pub guide_url: Option<String>,
 
