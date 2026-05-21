@@ -40,6 +40,7 @@ pub enum Map {
     BuriedCity,
     BlueGate,
     StellaMontis,
+    RivenTides,
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]

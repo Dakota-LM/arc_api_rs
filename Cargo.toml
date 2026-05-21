@@ -1,6 +1,6 @@
 [package]
 name = "arc_api_rs"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2024"
 license = "MIT"
 description = "Async Rust client for the MetaForge Arc Raiders API"
