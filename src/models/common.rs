@@ -82,9 +82,12 @@ impl<'de> Deserialize<'de> for UriString {
         D: Deserializer<'de>,
     {
         let s = String::deserialize(deserializer)?;
-        // Parse and validate URI format
-        let url = Url::parse(&s)
-            .map_err(|e| serde::de::Error::custom(format!("Invalid URI format: {}", e)))?;
+        // Try absolute URL first, then resolve relative paths against the CDN base
+        let url = Url::parse(&s).or_else(|_| {
+            let base = Url::parse("https://cdn.metaforge.app/").unwrap();
+            base.join(&s)
+        })
+        .map_err(|e| serde::de::Error::custom(format!("Invalid URI format: {}", e)))?;
         Ok(UriString(url))
     }
 }
